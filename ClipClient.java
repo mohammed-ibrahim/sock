@@ -14,7 +14,7 @@ public class ClipClient
 
         String serverName = args[0];
         if (!isNumeric(args[1])) {
-            System.out.println("port needs to be an integer");
+            System.out.println("Port needs to be an integer");
             return;
         }
 
@@ -22,15 +22,15 @@ public class ClipClient
         try {
             String contents = readFromSystemIo();
             Socket client = new Socket(serverName, port);
-            System.out.println("Connected to " + client.getRemoteSocketAddress());
 
             OutputStream outToServer = client.getOutputStream();
             DataOutputStream out = new DataOutputStream(outToServer);
 
             out.writeBytes(contents);
             client.close();
+            System.out.println("Successfully sent to: " + client.getRemoteSocketAddress());
         } catch(Exception e) {
-            System.out.println("Failed to send message");
+            System.out.println("Failed!");
             e.printStackTrace();
         }
     }

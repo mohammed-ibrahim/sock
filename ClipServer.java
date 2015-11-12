@@ -23,10 +23,7 @@ public class ClipServer extends Thread
         {
             try
             {
-                System.out.println("Waiting for client on port " + serverSocket.getLocalPort() + "...");
-
                 Socket server = serverSocket.accept();
-                System.out.println("Connected to " + server.getRemoteSocketAddress());
 
                 int size = 5000;
                 char[] bytes = new char[size];
@@ -40,8 +37,10 @@ public class ClipServer extends Thread
                 }
                 
                 bufReader.close();
-                copyToClipboard(sb.toString());
                 server.close();
+                String requiredString = sb.toString();
+                copyToClipboard(requiredString);
+                System.out.println("Copied: " + requiredString.substring(0, Math.min(requiredString.length(), 10)));
             } catch(IOException e) {
                 e.printStackTrace();
                 break;
