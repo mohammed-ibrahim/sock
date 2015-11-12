@@ -40,7 +40,6 @@ public class ClipServer extends Thread
                 }
                 
                 bufReader.close();
-                System.out.println(sb.toString());
                 copyToClipboard(sb.toString());
                 server.close();
             } catch(IOException e) {
