@@ -57,6 +57,7 @@ public class ClipClient
         }
 
         bufReader.close();
-        return sb.toString();
+        String str = sb.toString();
+        return str.substring(0,str.length()-1);
     }
 }
